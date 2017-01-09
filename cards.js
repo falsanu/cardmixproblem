@@ -35,7 +35,7 @@ Array.prototype.equals = function (array) {
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 var fs = require('fs');
-let dataToWrite = 'Anzahl Karten;Druchmischen;\n';
+let dataToWrite = 'Amount of Cards;Mixes;\n';
 
 
 /**
@@ -44,7 +44,7 @@ let dataToWrite = 'Anzahl Karten;Druchmischen;\n';
 let startTime = new Date();
 let amountOfCards = 500;
 
-console.log('Mische jeden Stapel mit bis zu '+amountOfCards+' Karten');
+console.log('Mixes every stack with up to '+amountOfCards+' cards');
 
 
 // create decks
@@ -54,6 +54,7 @@ for (let cardsOnDeck = 2, j = amountOfCards; cardsOnDeck <= amountOfCards; cards
 	let original_stack = [];
 	let mixed_stack = [];
   let halfedStack = cardsOnDeck / 2;
+
   // ES6
   original_stack = Array.apply(null, Array(cardsOnDeck)).map((x, i)=>i)
 
@@ -93,18 +94,10 @@ for (let cardsOnDeck = 2, j = amountOfCards; cardsOnDeck <= amountOfCards; cards
       mixed_stack.push(top_stack.shift());
     }
 
-    // let currentCard = 1;
-    // while (currentCard <= cardsOnDeck / 2) {
-    //   mixed_stack.push(temp_list_bottom.shift());
-    //   mixed_stack.push(temp_list_top.shift());
-    //   currentCard++;
-    // }
-
     mixedCounter++;
   }
 
   dataToWrite += cardsOnDeck + ';' + mixedCounter + ';\n';
-  // console.log(mixedCounter + " mal Mischen bei " +  cardsOnDeck  + " Karten");
 }
 
 fs.writeFile('analyseNodeJS.csv', dataToWrite, 'utf8', function (err) {
@@ -117,4 +110,4 @@ fs.writeFile('analyseNodeJS.csv', dataToWrite, 'utf8', function (err) {
 
 
 let endTime = new Date();
-console.log('Der Durchgang dauerte: ' + ((endTime - startTime)/1000) + ' Sekunden');
+console.log('The process took ' + ((endTime - startTime)/1000) + ' seconds');
