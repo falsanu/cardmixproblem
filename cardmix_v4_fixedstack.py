@@ -9,15 +9,14 @@ import datetime
 a = datetime.datetime.now()
 
 
-#
-# try:
-#     d = open("analyse.csv","w")
-# except:
-#     print("Datei [analyse.csv] nicht vorhanden. Bitte erstellen Sie die Datei und versuchen Sie es erneut.")
-#     sys.exit(0)
-#
-#
-# d.write("Anzahl Karten" + ";" + "Druchmischen" + ";" + "\n")
+try:
+    d = open("analyse.csv","w")
+except:
+    print("Datei [analyse.csv] nicht vorhanden. Bitte erstellen Sie die Datei und versuchen Sie es erneut.")
+    sys.exit(0)
+
+
+d.write("Anzahl Karten" + ";" + "Druchmischen" + ";" + "\n")
 
 even_input = 0
 
@@ -90,12 +89,12 @@ for n in range(2, (m+1), 2):
         counter += 1
 
     # print(str(counter) + " mal Mischen bei " +  str(n)  + " Karten")
-    # d.write(str(n) + ";" + str(counter) + ";" + "\n")
+    d.write(str(n) + ";" + str(counter) + ";" + "\n")
 
     #  n = n + 2
 
 # Datei wird geschlossen
-# d.close()
+d.close()
 b = datetime.datetime.now()
 c = b - a
 print("Der Durchgang dauerte: " + str(c) + " Sekunden")
